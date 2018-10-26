@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import Item from './item';
+import Data from '../data/list';
 class list extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+          tasks:Data
+        }
+    }
     render() {
+        let elmButton = this.state.tasks.map((item, index)=>{
+            return <Item item={item} key={index} index={index}/>
+        })
         return (
             <table className="table">
             <thead>
@@ -32,7 +42,7 @@ class list extends Component {
                 </td>
                 <td></td>
                 </tr>
-                <Item />
+                {elmButton}
             </tbody>
             </table>
         );
