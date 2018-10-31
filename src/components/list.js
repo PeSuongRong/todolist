@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import Item from './item';
-import Data from '../data/list';
 class list extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-          tasks:Data
-        }
-    }
     render() {
-        let elmButton = this.state.tasks.map((item, index)=>{
-            return <Item item={item} key={index} index={index}/>
+        var data = this.props.data; //var {data} = this.props
+        let elmButton = data.map((item, index)=>{
+            return <Item item={item} key={item.id} index={index} onStatus={this.props.onStatus} onDelete={this.props.onDelete}/>
         })
         return (
             <table className="table">
@@ -27,16 +21,19 @@ class list extends Component {
                 <td></td>
                 <td>
                     <div className="form-group">
-                    <input type="text" className="form-control" id="search" />
+                    <input
+                        type="text"
+                        className="form-control"
+                    />
                     </div>
                 </td>
                 <td>
                     <div className="form-group">
-                    <select className="form-control" id="sel2">
-                        <option>Tất cả</option>
+                    <select
+                        className="form-control"
+                    >
+                        <option>Ẩn</option>
                         <option>Kích hoạt</option>
-                        <option>Chưa kích hoạt</option>
-                        <option>Chờ xác nhận</option>
                     </select>
                     </div>
                 </td>
